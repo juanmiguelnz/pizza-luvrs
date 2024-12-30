@@ -10,8 +10,8 @@
   "author": "Ryan Lewis <ryan@ryanlewis.dev>",
   "license": "MIT",
   "dependencies": {
-    "@aws-sdk/client-dynamodb": "3.29.0",
-    "@aws-sdk/client-s3": "3.29.0",
+    "@aws-sdk/client-dynamodb": "^3.716.0",
+    "@aws-sdk/client-s3": "^3.717.0",
     "@aws-sdk/lib-dynamodb": "3.29.0",
     "@hapi/boom": "9.1.4",
     "@hapi/catbox": "11.1.1",
@@ -20,6 +20,7 @@
     "@hapi/hapi": "20.1.5",
     "@hapi/inert": "6.0.4",
     "@hapi/vision": "6.1.0",
+    "aws-sdk": "^2.1692.0",
     "bcryptjs": "2.4.3",
     "bootflat": "2.0.4",
     "fs-extra": "10.0.0",
@@ -27,7 +28,7 @@
     "joi": "17.4.2",
     "lodash": "4.17.21",
     "pg": "8.7.1",
-    "sequelize": "6.6.5",
+    "sequelize": "^6.37.5",
     "winston": "3.3.3"
   }
 }
