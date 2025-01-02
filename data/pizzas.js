@@ -4,6 +4,10 @@ const Pizza = require('../models/pizza')
 const ImageStore = require('../lib/imageStore')
 const PizzaStore = require('./pizzaStore')
 
+async function init () {
+  await PizzaStore.initialize()
+}
+
 async function create (name, toppings, img, username) {
   const imgUrl = await ImageStore.save(name.replace(/ /g, '-'), img)
   const pizza = new Pizza(name, toppings, imgUrl, username)
