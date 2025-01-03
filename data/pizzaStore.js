@@ -1,9 +1,9 @@
 const Sequelize = require('sequelize')
 
-const database = 'pizza_luvrs'
-const host = '<enter_host_here>'
-const username = 'postgres'
-const password = 'password'
+const database  = process.env.POSTGRES_DB;
+const host      = process.env.POSTGRES_HOST;
+const username  = process.env.POSTGRES_USER;
+const password  = process.env.POSTGRES_PW;
 
 const pgClient = new Sequelize(
   database,
