@@ -67,24 +67,3 @@ resource "aws_route_table_association" "subnetb" {
   subnet_id      = aws_subnet.subnetb.id
   route_table_id = aws_route_table.internet.id
 }
-
-resource "aws_security_group" "mgmtinstancesg" {
-  name   = "mgmt-sg"
-  vpc_id = aws_vpc.core_vpc.id
-  tags = {
-    Name = "pizza"
-  }
-}
-
-resource "aws_vpc_security_group_ingress_rule" "allowssh" {
-  security_group_id = aws_security_group.mgmtinstancesg.id
-
-  cidr_ipv4   = "0.0.0.0/0"
-  from_port   = 22
-  ip_protocol = "tcp"
-  to_port     = 22
-
-  tags = {
-    Name = "allow-ssh"
-  }
-}
