@@ -9,6 +9,6 @@ resource "aws_instance" "mgmtvm" {
   tags = {
     Name        = "mgmtvm"
     Environment = "develop"
-    Billings    = "123456789"
+    Billing    = "123456789"
   }
 }
