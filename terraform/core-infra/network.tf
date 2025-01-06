@@ -69,7 +69,8 @@ resource "aws_route_table_association" "subnetb" {
 }
 
 resource "aws_security_group" "mgmtinstancesg" {
-  vpc_id      = aws_vpc.core_vpc.id
+  name   = "mgmt-sg"
+  vpc_id = aws_vpc.core_vpc.id
   tags = {
     Name = "pizza"
   }
@@ -82,4 +83,8 @@ resource "aws_vpc_security_group_ingress_rule" "allowssh" {
   from_port   = 22
   ip_protocol = "tcp"
   to_port     = 22
+
+  tags = {
+    Name = "allow-ssh"
+  }
 }
