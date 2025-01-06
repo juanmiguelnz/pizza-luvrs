@@ -5,5 +5,3 @@ output "vpc_id" {
 output "mgmtsubnet_id" {
   value = aws_subnet.mgmtsubnet.id
 }
-
-# test

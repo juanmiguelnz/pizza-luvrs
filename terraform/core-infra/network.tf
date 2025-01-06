@@ -15,7 +15,7 @@ resource "aws_internet_gateway" "igw" {
 
 resource "aws_subnet" "mgmtsubnet" {
   vpc_id     = aws_vpc.core_vpc.id
-  cidr_block = "10.10.0.0/24"
+  cidr_block = "10.10.100.0/24"
 
   tags = {
     Name = "mgmt-subnet"
