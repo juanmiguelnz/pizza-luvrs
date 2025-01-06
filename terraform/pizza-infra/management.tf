@@ -7,6 +7,8 @@ resource "aws_instance" "mgmtvm" {
   iam_instance_profile        = "0PLoversInstanceProfile"
 
   tags = {
-    Name = "mgmtvm"
+    Name        = "mgmtvm"
+    Environment = "develop"
+    Billings    = "123456789"
   }
 }
