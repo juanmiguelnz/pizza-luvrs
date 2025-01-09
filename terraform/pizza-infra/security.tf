@@ -28,6 +28,6 @@ resource "aws_vpc_security_group_ingress_rule" "allow_https" {
   to_port     = 443
 
   tags = {
-    Name = "${var.prefix}-allow-http"
+    Name = "${var.prefix}-allow-https"
   }
 }
