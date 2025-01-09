@@ -3,6 +3,8 @@ name: 'Terraform'
 on: push
 
 env:
+  TF_CLOUD_ORGANIZATION: "specialised-tfc"
+  TF_API_TOKEN: "${{ secrets.TF_API_TOKEN }}"
   TF_LOG: INFO
   TF_INPUT: false
 
