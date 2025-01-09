@@ -1,5 +1,5 @@
 terraform {
-  backend "remote" {
+  cloud {
     organization = "specialised-tfc"
 
     workspaces {
@@ -12,6 +12,4 @@ terraform {
       version = "~> 4.16"
     }
   }
-
-  required_version = ">=1.10.3"
 }
