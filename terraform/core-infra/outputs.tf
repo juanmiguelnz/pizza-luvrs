@@ -9,3 +9,7 @@ output "mgmtsubnet_id" {
 output "mgmtinstancesg_id" {
   value = aws_security_group.mgmtinstancesg.id
 }
+
+output "mgmtvm_pip" {
+  value = aws_instance.mgmtvm.public_ip
+}
