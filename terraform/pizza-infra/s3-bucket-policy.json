@@ -8,8 +8,8 @@
             "Principal": "*",
             "Action": "s3:GetObject",
             "Resource": [
-                "arn:aws:s3:::p-love-nz",
-                "arn:aws:s3:::p-love-nz/*"
+                "arn:aws:s3:::pizzatestnz123",
+                "arn:aws:s3:::pizzatestnz123/*"
             ]
         }
     ]
