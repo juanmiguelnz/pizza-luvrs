@@ -36,3 +36,19 @@ resource "aws_s3_bucket_policy" "allow_get_object_public_access" {
     bucket_name = aws_s3_bucket.pizza.id
   })
 }
+
+resource "aws_s3_bucket" "example" {
+  bucket = "mybucket"
+}
+
+resource "aws_s3_bucket_cors_configuration" "pizza" {
+  bucket = aws_s3_bucket.pizza.id
+
+  cors_rule {
+    allowed_headers = []
+    allowed_methods = ["GET"]
+    allowed_origins = ["*"]
+    expose_headers  = []
+    max_age_seconds = 3000
+  }
+}
