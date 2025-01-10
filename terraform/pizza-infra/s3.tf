@@ -5,7 +5,7 @@ resource "random_string" "random" {
 }
 
 resource "aws_s3_bucket" "pizza" {
-    bucket = "${var.prefix}${random_string.random.result}"
+  bucket = "${var.prefix}${random_string.random.result}"
 
   tags = {
     Name = "${var.prefix}${random_string.random.result}"
@@ -29,6 +29,8 @@ resource "aws_s3_bucket_public_access_block" "pizza" {
 }
 
 resource "aws_s3_bucket_acl" "pizza_s3_acl" {
+  depends_on = [aws_s3_bucket_public_access_block.pizza]
+
   bucket = aws_s3_bucket.pizza.id
   acl    = "public-read"
 }
