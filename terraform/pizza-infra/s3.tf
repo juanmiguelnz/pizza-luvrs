@@ -15,7 +15,7 @@ resource "aws_s3_bucket" "pizza" {
 resource "aws_s3_bucket_ownership_controls" "pizza" {
   bucket = aws_s3_bucket.pizza.id
   rule {
-    object_ownership = "BucketOwnerPreferred"
+    object_ownership = "BucketOwnerEnforced"
   }
 }
 
