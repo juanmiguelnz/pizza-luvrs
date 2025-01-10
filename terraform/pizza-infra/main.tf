@@ -17,3 +17,17 @@ resource "aws_lb" "pizza" {
     Name = "${var.prefix}-lb"
   }
 }
+
+resource "random_string" "random" {
+  length           = 4
+  upper = false
+  special          = false
+}
+
+resource "aws_s3_bucket" "pizza" {
+  bucket = "${var.prefix}${random_string.random.result}"
+
+  tags = {
+    Name        = "${var.prefix}${random_string.random.result}"
+  }
+}
