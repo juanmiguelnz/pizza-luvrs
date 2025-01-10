@@ -38,6 +38,6 @@ resource "aws_s3_bucket_policy" "allow_get_object_public_access" {
 
   bucket = aws_s3_bucket.pizza.id
   policy = templatefile("./s3-bucket-policy.json", {
-    bucket_name = aws_s3_bucket.bucket.id
+    bucket_name = aws_s3_bucket.pizza.id
   })
 }
