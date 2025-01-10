@@ -37,10 +37,6 @@ resource "aws_s3_bucket_policy" "allow_get_object_public_access" {
   })
 }
 
-resource "aws_s3_bucket" "example" {
-  bucket = "mybucket"
-}
-
 resource "aws_s3_bucket_cors_configuration" "pizza" {
   bucket = aws_s3_bucket.pizza.id
 
