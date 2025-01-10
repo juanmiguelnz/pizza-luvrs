@@ -14,9 +14,12 @@ resource "aws_s3_bucket" "pizza" {
   }
 }
 
+resource "aws_s3_bucket_acl" "pizza_s3_acl" {
+  bucket = aws_s3_bucket.pizza.id
+  acl    = "public-read"
+}
+
 resource "aws_s3_bucket_policy" "allow_get_object_public_access" {
   bucket = aws_s3_bucket.pizza.id
   policy = file("./s3-bucket-policy.json")
 }
-
-
