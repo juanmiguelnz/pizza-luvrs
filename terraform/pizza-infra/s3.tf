@@ -28,13 +28,6 @@ resource "aws_s3_bucket_public_access_block" "pizza" {
   restrict_public_buckets = false
 }
 
-resource "aws_s3_bucket_acl" "pizza_s3_acl" {
-  depends_on = [aws_s3_bucket_public_access_block.pizza]
-
-  bucket = aws_s3_bucket.pizza.id
-  acl    = "public-read"
-}
-
 resource "aws_s3_bucket_policy" "allow_get_object_public_access" {
   depends_on = [aws_s3_bucket_public_access_block.pizza]
 
