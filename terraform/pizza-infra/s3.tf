@@ -5,12 +5,10 @@ resource "random_string" "random" {
 }
 
 resource "aws_s3_bucket" "pizza" {
-  #   bucket = "${var.prefix}${random_string.random.result}"
-  bucket = "pizzatestnz123"
+    bucket = "${var.prefix}${random_string.random.result}"
 
   tags = {
-    # Name = "${var.prefix}${random_string.random.result}"
-    Name = "pizzatestnz123"
+    Name = "${var.prefix}${random_string.random.result}"
   }
 }
 
@@ -37,6 +35,9 @@ resource "aws_s3_bucket_acl" "pizza_s3_acl" {
 
 resource "aws_s3_bucket_policy" "allow_get_object_public_access" {
   depends_on = [aws_s3_bucket_public_access_block.pizza]
-  bucket     = aws_s3_bucket.pizza.id
-  policy     = file("./s3-bucket-policy.json")
+
+  bucket = aws_s3_bucket.pizza.id
+  policy = templatefile("./s3-bucket-policy.json", {
+    bucket_name = aws_s3_bucket.bucket.id
+  })
 }
