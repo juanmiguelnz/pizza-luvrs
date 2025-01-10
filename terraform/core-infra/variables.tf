@@ -6,5 +6,5 @@ variable "vpc_cidr_block" {
 
 variable "public_subnet_count" {
   type    = number
-  default = 2
+  default = 3
 }
