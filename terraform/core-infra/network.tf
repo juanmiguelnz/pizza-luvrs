@@ -20,7 +20,7 @@ resource "aws_subnet" "public_subnets" {
   cidr_block = cidrsubnet(var.vpc_cidr_block, 8, count.index)
 
   tags = {
-    Name = "subnet${count.index}"
+    Name = "public_subnet${count.index}"
   }
 }
 
@@ -29,7 +29,7 @@ resource "aws_subnet" "mgmtsubnet" {
   cidr_block = "10.10.99.0/24"
 
   tags = {
-    Name = "mgmt-subnet"
+    Name = "mgmt_subnet"
   }
 }
 
