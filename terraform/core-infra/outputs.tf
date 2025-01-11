@@ -17,3 +17,7 @@ output "mgmtinstancesg_id" {
 output "mgmtvm_pip" {
   value = aws_instance.mgmtvm.public_ip
 }
+
+output "vpc_cidr_block" {
+  value = var.vpc_cidr_block
+}

@@ -35,7 +35,7 @@ resource "aws_vpc_security_group_ingress_rule" "allow_https" {
 resource "aws_security_group" "web_servers_sg" {
   name   = "${var.prefix}-web-sg"
   vpc_id = data.tfe_outputs.core-infra.nonsensitive_values.vpc_id
-  
+
   tags = {
     Name = "${var.prefix}-web-sg"
   }
@@ -45,11 +45,24 @@ resource "aws_vpc_security_group_ingress_rule" "allow_3000" {
   security_group_id = aws_security_group.web_servers_sg.id
 
   referenced_security_group_id = aws_security_group.lb_sg.id
-  from_port   = 3000
-  ip_protocol = "tcp"
-  to_port     = 3000
+  from_port                    = 3000
+  ip_protocol                  = "tcp"
+  to_port                      = 3000
 
   tags = {
     Name = "${var.prefix}-allow-3000"
+  }
+}
+
+resource "aws_vpc_security_group_ingress_rule" "allow_ssh" {
+  security_group_id = aws_security_group.web_servers_sg.id
+
+  cidr_ipv4   = data.tfe_outputs.core-infra.nonsensitive_values.core_vpc_cidr_block
+  from_port   = 22
+  ip_protocol = "tcp"
+  to_port     = 22
+
+  tags = {
+    Name = "${var.prefix}-allow-ssh"
   }
 }
