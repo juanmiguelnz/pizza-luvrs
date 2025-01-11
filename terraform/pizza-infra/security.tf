@@ -66,3 +66,16 @@ resource "aws_vpc_security_group_ingress_rule" "allow_ssh" {
     Name = "${var.prefix}-allow-ssh"
   }
 }
+
+resource "aws_vpc_security_group_ingress_rule" "allow_ping" {
+  security_group_id = aws_security_group.web_servers_sg.id
+
+  cidr_ipv4   = data.tfe_outputs.core-infra.nonsensitive_values.vpc_cidr_block
+  ip_protocol = "icmp"
+  from_port   = "-1"
+  to_port     = "-1"
+
+  tags = {
+    Name = "${var.prefix}-allow-ping"
+  }
+}
