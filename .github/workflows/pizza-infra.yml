@@ -1,9 +1,14 @@
-name: 'Terraform'
+name: 'Pizza Infra Workflow'
 
-on: push
+on:
+  push:
+    paths:
+      - 'terraform/pizza-infra/**'
+  pull_request:
+    paths:
+      - 'terraform/pizza-infra/**'
 
 env:
-  TF_CLOUD_ORGANIZATION: "specialised-tfc"
   TF_LOG: INFO
   TF_INPUT: false
 
@@ -26,22 +31,20 @@ jobs:
     # Install the preferred version of Terraform CLI 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
-      with:
-        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
       id: init
-      run: terraform -chdir=terraform/core-infra init
+      run: terraform -chdir=terraform/pizza-infra init
 
     # Run a terraform fmt for push
     - name: Terraform Format
       id: fmt
-      run: terraform -chdir=terraform/core-infra fmt -check
+      run: terraform -chdir=terraform/pizza-infra fmt -check
 
     # Run a terraform validate
     # Run even if formatting fails
     - name: Terraform Validate
       id: validate
       if: (success() || failure())
-      run: terraform -chdir=terraform/core-infra validate
+      run: terraform -chdir=terraform/pizza-infra validate
