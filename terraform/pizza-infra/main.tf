@@ -31,3 +31,17 @@ resource "aws_vpc_endpoint_route_table_association" "s3" {
   vpc_endpoint_id = aws_vpc_endpoint.s3.id
   route_table_id  = data.tfe_outputs.core-infra.nonsensitive_values.route_table_id
 }
+
+resource "aws_vpc_endpoint" "dynamodb" {
+  vpc_id       = data.tfe_outputs.core-infra.nonsensitive_values.vpc_id
+  service_name = "com.amazonaws.${data.tfe_outputs.core-infra.nonsensitive_values.region}.dynamodb"
+
+  tags = {
+    Name = "${var.prefix}-dynamodb-endpoint"
+  }
+}
+
+resource "aws_vpc_endpoint_route_table_association" "dynamodb" {
+  vpc_endpoint_id = aws_vpc_endpoint.dynamodb.id
+  route_table_id  = data.tfe_outputs.core-infra.nonsensitive_values.route_table_id
+}
