@@ -25,3 +25,7 @@ output "vpc_cidr_block" {
 output "route_table_id" {
   value = aws_route_table.internet.id
 }
+
+output "name" {
+  value = var.region
+}

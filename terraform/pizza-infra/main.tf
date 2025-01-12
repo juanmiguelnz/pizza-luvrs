@@ -20,7 +20,11 @@ resource "aws_lb" "pizza" {
 
 resource "aws_vpc_endpoint" "s3" {
   vpc_id       = data.tfe_outputs.core-infra.nonsensitive_values.vpc_id
-  service_name = "com.amazonaws.ap-southeast-2.s3"
+  service_name = "com.amazonaws.${data.tfe_outputs.core-infra.nonsensitive_values.region}.s3"
+
+  tags = {
+    Name = "${var.prefix}-s3-endpoint"
+  }
 }
 
 resource "aws_vpc_endpoint_route_table_association" "s3" {
