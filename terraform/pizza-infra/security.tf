@@ -79,3 +79,25 @@ resource "aws_vpc_security_group_ingress_rule" "allow_ping" {
     Name = "${var.prefix}-allow-ping"
   }
 }
+
+resource "aws_security_group" "rds_sg" {
+  name   = "${var.prefix}-rds-sg"
+  vpc_id = data.tfe_outputs.core-infra.nonsensitive_values.vpc_id
+
+  tags = {
+    Name = "${var.prefix}-rds-sg"
+  }
+}
+
+resource "aws_vpc_security_group_ingress_rule" "allow_5432" {
+  security_group_id = aws_security_group.rds_sg.id
+
+  referenced_security_group_id = aws_security_group.web_servers_sg.id
+  from_port                    = 5432
+  ip_protocol                  = "tcp"
+  to_port                      = 5432
+
+  tags = {
+    Name = "${var.prefix}-allow-5432"
+  }
+}
