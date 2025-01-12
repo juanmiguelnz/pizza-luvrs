@@ -26,6 +26,6 @@ output "route_table_id" {
   value = aws_route_table.internet.id
 }
 
-output "name" {
+output "region" {
   value = var.region
 }
