@@ -1,4 +1,4 @@
-name: 'Terraform'
+name: 'Core Infra Workflow'
 
 on: push
 
