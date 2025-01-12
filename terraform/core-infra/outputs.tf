@@ -21,3 +21,7 @@ output "mgmtvm_pip" {
 output "vpc_cidr_block" {
   value = var.vpc_cidr_block
 }
+
+output "route_table_id" {
+  value = aws_route_table.internet.id
+}

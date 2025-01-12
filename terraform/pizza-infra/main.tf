@@ -17,3 +17,13 @@ resource "aws_lb" "pizza" {
     Name = "${var.prefix}-lb"
   }
 }
+
+resource "aws_vpc_endpoint" "s3" {
+  vpc_id       = data.tfe_outputs.core-infra.nonsensitive_values.vpc_id
+  service_name = "com.amazonaws.ap-southeast-2.s3"
+}
+
+resource "aws_vpc_endpoint_route_table_association" "s3" {
+  vpc_endpoint_id = aws_vpc_endpoint.s3.id
+  route_table_id  = data.tfe_outputs.core-infra.nonsensitive_values.route_table_id
+}
