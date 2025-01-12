@@ -2,9 +2,11 @@ name: 'Pizza Infra Workflow'
 
 on:
   push:
-    - 'terraform/pizza-infra/**'
+    paths:
+      - 'terraform/pizza-infra/**'
   pull_request:
-    - 'terraform/core-infra/**'
+    paths:
+      - 'terraform/pizza-infra/**'
 
 env:
   TF_LOG: INFO

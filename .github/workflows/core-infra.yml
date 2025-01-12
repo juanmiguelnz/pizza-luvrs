@@ -2,9 +2,11 @@ name: 'Core Infra Workflow'
 
 on:
   push:
-    - 'terraform/core-infra/**'
+    paths:
+      - 'terraform/core-infra/**'
   pull_request:
-    - 'terraform/core-infra/**'
+    paths:
+      - 'terraform/core-infra/**'
 
 env:
   TF_LOG: INFO
