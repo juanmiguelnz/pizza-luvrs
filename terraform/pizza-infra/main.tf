@@ -59,7 +59,7 @@ resource "aws_db_instance" "postgres" {
   identifier             = "${var.prefix}-postgres"
   instance_class         = "db.t3.micro"
   engine                 = "postgres"
-  engine_version         = "12.15"
+  engine_version         = "12.16"
   allocated_storage      = 10
   skip_final_snapshot    = true
   publicly_accessible    = true
