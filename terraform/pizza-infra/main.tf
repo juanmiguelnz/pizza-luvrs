@@ -46,6 +46,15 @@ resource "aws_vpc_endpoint_route_table_association" "dynamodb" {
   route_table_id  = data.tfe_outputs.core-infra.nonsensitive_values.route_table_id
 }
 
+resource "aws_db_subnet_group" "postgres" {
+  name       = "${var.prefix}-postgres"
+  subnet_ids = [for subnet in data.tfe_outputs.core-infra.nonsensitive_values.public_subnets : subnet.id]
+
+  tags = {
+    Name = "${var.prefix}-postgres"
+  }
+}
+
 resource "aws_db_instance" "postgres" {
   identifier = "${var.prefix}-postgres"
   instance_class      = "db.t3.micro"
