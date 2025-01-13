@@ -3,6 +3,15 @@ data "tfe_outputs" "core-infra" {
   workspace    = "core-infra-develop"
 }
 
+data "http" "local_ip" {
+  url = "https://api64.ipify.org?format=text" # Service that returns your public IP
+}
+
+output "current_ip" {
+  value = data.http.my_ip.response_body
+}
+
+
 data "aws_ssm_parameter" "pizza_db_name" {
   name = "pizza-db-name"
 }
