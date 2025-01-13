@@ -56,16 +56,16 @@ resource "aws_db_subnet_group" "postgres" {
 }
 
 resource "aws_db_instance" "postgres" {
-  identifier = "${var.prefix}-postgres"
-  instance_class      = "db.t3.micro"
-  engine              = "postgres"
-  engine_version      = "12.15"
-  allocated_storage   = 10
-  skip_final_snapshot = true
-  publicly_accessible = true
-  db_subnet_group_name = "${var.prefix}-postgres"
+  identifier             = "${var.prefix}-postgres"
+  instance_class         = "db.t3.micro"
+  engine                 = "postgres"
+  engine_version         = "12.15"
+  allocated_storage      = 10
+  skip_final_snapshot    = true
+  publicly_accessible    = true
+  db_subnet_group_name   = aws_db_subnet_group.postgres.name
   vpc_security_group_ids = [aws_security_group.rds_sg.id]
-  db_name             = data.aws_ssm_parameter.pizza_db_name.value
-  username            = data.aws_ssm_parameter.pizza_db_user.value
-  password            = data.aws_ssm_parameter.pizza_db_pass.value
+  db_name                = data.aws_ssm_parameter.pizza_db_name.value
+  username               = data.aws_ssm_parameter.pizza_db_user.value
+  password               = data.aws_ssm_parameter.pizza_db_pass.value
 }
