@@ -54,4 +54,5 @@ resource "aws_db_instance" "postgres" {
   db_name              = data.aws_ssm_parameter.pizza_db_name.value
   username             = data.aws_ssm_parameter.pizza_db_user.value
   password             = data.aws_ssm_parameter.pizza_db_pass.value
+  final_snapshot_identifier = true
 }
