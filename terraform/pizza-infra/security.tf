@@ -105,10 +105,10 @@ resource "aws_vpc_security_group_ingress_rule" "allow_5432" {
 resource "aws_vpc_security_group_ingress_rule" "allow_5432_from_local" {
   security_group_id = aws_security_group.rds_sg.id
 
-  cidr_ipv4 = "${data.http.local_ip.response_body}/32"
-  from_port                    = 5432
-  ip_protocol                  = "tcp"
-  to_port                      = 5432
+  cidr_ipv4   = "${data.http.local_ip.response_body}/32"
+  from_port   = 5432
+  ip_protocol = "tcp"
+  to_port     = 5432
 
   tags = {
     Name = "${var.prefix}-allow-5432-from-local"

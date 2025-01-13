@@ -47,12 +47,12 @@ resource "aws_vpc_endpoint_route_table_association" "dynamodb" {
 }
 
 resource "aws_db_instance" "postgres" {
-  instance_class       = "db.t3.micro"
-  engine               = "postgres"
-  engine_version       = "12.15"
-  allocated_storage    = 10
-  db_name              = data.aws_ssm_parameter.pizza_db_name.value
-  username             = data.aws_ssm_parameter.pizza_db_user.value
-  password             = data.aws_ssm_parameter.pizza_db_pass.value
+  instance_class      = "db.t3.micro"
+  engine              = "postgres"
+  engine_version      = "12.15"
+  allocated_storage   = 10
+  db_name             = data.aws_ssm_parameter.pizza_db_name.value
+  username            = data.aws_ssm_parameter.pizza_db_user.value
+  password            = data.aws_ssm_parameter.pizza_db_pass.value
   skip_final_snapshot = true
 }
