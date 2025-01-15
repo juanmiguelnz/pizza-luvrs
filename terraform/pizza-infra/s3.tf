@@ -54,6 +54,5 @@ resource "aws_s3_object" "assets" {
 
   bucket = aws_s3_bucket.pizza.id
   source = join("/", ["${path.module}","../../assets", "${each.value}"])
-  #source = "${path.module}/../../assets/${each.value}"
   key    = each.value
 }
