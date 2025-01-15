@@ -4,7 +4,7 @@ resource "aws_instance" "mgmtvm" {
   subnet_id                   = aws_subnet.mgmtsubnet.id
   vpc_security_group_ids      = [aws_security_group.mgmtinstancesg.id]
   associate_public_ip_address = true
-  iam_instance_profile        = "0PLoversInstanceProfile"
+  iam_instance_profile        = aws_iam_instance_profile.pizza.name
 
   tags = {
     Name        = "mgmtvm"

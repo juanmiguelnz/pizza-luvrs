@@ -1,3 +1,8 @@
+variable "prefix" {
+  type    = string
+  default = "pizza"
+}
+
 variable "region" {
   type    = string
   default = "ap-southeast-2"
