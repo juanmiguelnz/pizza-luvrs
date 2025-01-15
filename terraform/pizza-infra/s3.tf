@@ -48,3 +48,12 @@ resource "aws_s3_bucket_cors_configuration" "pizza" {
     max_age_seconds = 3000
   }
 }
+
+resource "aws_s3_object" "assets" {
+  for_each = fileset(join("/", ["${path.module}","../../assets"]), "**")
+
+  bucket = aws_s3_bucket.pizza.id
+  source = join("/", ["${path.module}","../../assets", "${each.value}"])
+  #source = "${path.module}/../../assets/${each.value}"
+  key    = each.value
+}
