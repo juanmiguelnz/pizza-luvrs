@@ -7,3 +7,15 @@ variable "local_ip" {
   type    = string
   default = "125.237.149.55"
 }
+
+variable "pizza_db_name" {
+  type    = string
+}
+
+variable "pizza_db_user" {
+  type    = string
+}
+
+variable "pizza_db_pass" {
+  type    = string
+}

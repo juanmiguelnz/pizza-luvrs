@@ -55,6 +55,24 @@ resource "aws_db_subnet_group" "postgres" {
   }
 }
 
+resource "aws_ssm_parameter" "pizza_db_name" {
+  type = "securestring"
+  name  = "pizza_db_name"
+  value = "${var.pizza_db_name}"
+}
+
+resource "aws_ssm_parameter" "pizza_db_user" {
+  type = "securestring"
+  name  = "pizza_db_user"
+  value = "${var.pizza_db_user}"
+}
+
+resource "aws_ssm_parameter" "pizza_db_pass" {
+  type = "securestring"
+  name  = "pizza_db_pass"
+  value = "${var.pizza_db_pass}"
+}
+
 resource "aws_db_instance" "postgres" {
   identifier             = "${var.prefix}-postgres"
   instance_class         = "db.t3.micro"
@@ -65,7 +83,7 @@ resource "aws_db_instance" "postgres" {
   publicly_accessible    = true
   db_subnet_group_name   = aws_db_subnet_group.postgres.name
   vpc_security_group_ids = [aws_security_group.rds_sg.id]
-  db_name                = data.aws_ssm_parameter.pizza_db_name.value
-  username               = data.aws_ssm_parameter.pizza_db_user.value
-  password               = data.aws_ssm_parameter.pizza_db_pass.value
+  db_name                = aws_ssm_parameter.pizza_db_name.value
+  username               = aws_ssm_parameter.pizza_db_user.value
+  password               = aws_ssm_parameter.pizza_db_pass.value
 }
