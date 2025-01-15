@@ -9,13 +9,13 @@ variable "local_ip" {
 }
 
 variable "pizza_db_name" {
-  type    = string
+  type = string
 }
 
 variable "pizza_db_user" {
-  type    = string
+  type = string
 }
 
 variable "pizza_db_pass" {
-  type    = string
+  type = string
 }

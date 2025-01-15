@@ -56,21 +56,21 @@ resource "aws_db_subnet_group" "postgres" {
 }
 
 resource "aws_ssm_parameter" "pizza_db_name" {
-  type = "securestring"
+  type  = "SecureString"
   name  = "pizza_db_name"
-  value = "${var.pizza_db_name}"
+  value = var.pizza_db_name
 }
 
 resource "aws_ssm_parameter" "pizza_db_user" {
-  type = "securestring"
+  type  = "SecureString"
   name  = "pizza_db_user"
-  value = "${var.pizza_db_user}"
+  value = var.pizza_db_user
 }
 
 resource "aws_ssm_parameter" "pizza_db_pass" {
-  type = "securestring"
+  type  = "SecureString"
   name  = "pizza_db_pass"
-  value = "${var.pizza_db_pass}"
+  value = var.pizza_db_pass
 }
 
 resource "aws_db_instance" "postgres" {
