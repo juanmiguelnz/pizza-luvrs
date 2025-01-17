@@ -88,6 +88,16 @@ resource "aws_db_instance" "postgres" {
   password               = aws_ssm_parameter.pizza_db_pass.value
 }
 
+resource "aws_dynamodb_table" "toppings" {
+  name             = "toppings"
+  hash_key         = "toppings"
+
+  attribute {
+    name = "toppings"
+    type = "S"
+  }
+}
+
 resource "aws_instance" "pizza" {
 
   ami                         = "ami-0ce4704e01dabf5a1"
