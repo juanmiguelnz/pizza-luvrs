@@ -96,6 +96,8 @@ resource "aws_dynamodb_table" "toppings" {
     name = "toppings"
     type = "S"
   }
+
+  billing_mode = "PAY_PER_REQUEST"
 }
 
 resource "aws_instance" "pizza" {
