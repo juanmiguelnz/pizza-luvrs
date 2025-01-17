@@ -94,10 +94,10 @@ resource "aws_instance" "mgmtvm" {
   subnet_id                   = aws_subnet.mgmtsubnet.id
   vpc_security_group_ids      = [aws_security_group.web_servers_sg.id]
   associate_public_ip_address = false
-  iam_instance_profile        = aws_iam_instance_profile.pizza.name
+  iam_instance_profile        = data.tfe_outputs.core-infra.nonsensitive_values.instance_profile
 
   tags = {
-    Name        = "mgmtvm"
+    Name        = "${var.prefix}"
     Environment = "develop"
     Billing     = "123456789"
   }
