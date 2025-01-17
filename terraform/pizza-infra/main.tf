@@ -89,13 +89,12 @@ resource "aws_db_instance" "postgres" {
 }
 
 resource "aws_instance" "pizza" {
-  #count = length(data.tfe_outputs.core-infra.nonsensitive_values.public_subnets)
 
   ami                         = "ami-0ce4704e01dabf5a1"
   instance_type               = "t2.micro"
   subnet_id                   = data.tfe_outputs.core-infra.nonsensitive_values.public_subnets[0].id
   vpc_security_group_ids      = [aws_security_group.web_servers_sg.id]
-  associate_public_ip_address = false
+  associate_public_ip_address = true
   iam_instance_profile        = data.tfe_outputs.core-infra.nonsensitive_values.instance_profile
 
   tags = {
