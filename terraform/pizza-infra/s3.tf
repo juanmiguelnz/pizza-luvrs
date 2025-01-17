@@ -5,7 +5,7 @@ resource "random_string" "random" {
 }
 
 resource "aws_s3_bucket" "pizza" {
-  bucket = "${var.prefix}-${random_string.random.result}"
+  bucket = "p-love-nz"
 
   tags = {
     Name = "${var.prefix}-${random_string.random.result}"
