@@ -100,6 +100,18 @@ resource "aws_dynamodb_table" "toppings" {
   billing_mode = "PAY_PER_REQUEST"
 }
 
+resource "aws_dynamodb_table" "users" {
+  name             = "users"
+  hash_key         = "users"
+
+  attribute {
+    name = "users"
+    type = "S"
+  }
+
+  billing_mode = "PAY_PER_REQUEST"
+}
+
 resource "aws_instance" "pizza" {
 
   ami                         = "ami-0ce4704e01dabf5a1"
