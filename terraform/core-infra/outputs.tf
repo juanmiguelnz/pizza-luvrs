@@ -29,3 +29,7 @@ output "route_table_id" {
 output "region" {
   value = var.region
 }
+
+output "instance_profile" {
+  value = aws_iam_instance_profile.pizza.name
+}
