@@ -54,13 +54,13 @@ resource "aws_vpc_security_group_ingress_rule" "allow_3000" {
   }
 }
 
-resource "aws_vpc_security_group_ingress_rule" "allow_3000" {
+resource "aws_vpc_security_group_ingress_rule" "allow_3000_from_local_ip" {
   security_group_id = aws_security_group.web_servers_sg.id
 
-  cidr_ipv4 = "${var.local_ip}/32"
-  from_port                    = 3000
-  ip_protocol                  = "tcp"
-  to_port                      = 3000
+  cidr_ipv4   = "${var.local_ip}/32"
+  from_port   = 3000
+  ip_protocol = "tcp"
+  to_port     = 3000
 
   tags = {
     Name = "${var.prefix}-allow-3000"
