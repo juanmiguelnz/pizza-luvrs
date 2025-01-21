@@ -28,7 +28,7 @@ resource "aws_vpc_security_group_ingress_rule" "allow_3000" {
   to_port     = 80
 
   tags = {
-    Name = "${var.prefix}-allow-ssh"
+    Name = "${var.prefix}-allow-http"
   }
 }
 
