@@ -23,9 +23,9 @@ resource "aws_vpc_security_group_ingress_rule" "allow_3000" {
   security_group_id = aws_security_group.mgmtinstancesg.id
 
   cidr_ipv4   = "${(chomp(data.http.icanhazip.response_body))}/32"
-  from_port   = 80
+  from_port   = 3000
   ip_protocol = "tcp"
-  to_port     = 80
+  to_port     = 3000
 
   tags = {
     Name = "${var.prefix}-allow-http"
