@@ -18,8 +18,9 @@ resource "aws_internet_gateway" "igw" {
 resource "aws_subnet" "public_subnets" {
   count = var.public_subnet_count
 
-  vpc_id     = aws_vpc.core_vpc.id
-  cidr_block = cidrsubnet(var.vpc_cidr_block, 8, count.index)
+  vpc_id            = aws_vpc.core_vpc.id
+  cidr_block        = cidrsubnet(var.vpc_cidr_block, 8, count.index)
+  availability_zone = data.aws_availability_zones.available.names[count.index]
 
   tags = {
     Name = "public_subnet${count.index}"
