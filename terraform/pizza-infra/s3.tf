@@ -72,5 +72,5 @@ resource "aws_s3_object" "stylesheet" {
   bucket       = aws_s3_bucket.pizza.id
   source       = "../../assets/css/stylesheet.css"
   key          = "css/stylesheet.css"
-#  content_type = "text/css"
+  content_type = "text/css"
 }
