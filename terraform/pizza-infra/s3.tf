@@ -49,10 +49,21 @@ resource "aws_s3_bucket_cors_configuration" "pizza" {
   }
 }
 
+# resource "aws_s3_object" "assets" {
+#   for_each = fileset(join("/", ["${path.module}", "../../assets"]), "**")
+
+#   bucket = aws_s3_bucket.pizza.id
+#   source = join("/", ["${path.module}", "../../assets", "${each.value}"])
+#   key    = each.value
+# }
+
 resource "aws_s3_object" "assets" {
-  for_each = fileset(join("/", ["${path.module}", "../../assets"]), "**")
+  for_each = {
+    for file in fileset(join("/", [path.module, "../../assets"]), "**") :
+    file => file if !startswith(file, "css/")
+  }
 
   bucket = aws_s3_bucket.pizza.id
-  source = join("/", ["${path.module}", "../../assets", "${each.value}"])
+  source = join("/", [path.module, "../../assets", each.value])
   key    = each.value
 }
