@@ -89,8 +89,8 @@ resource "aws_db_instance" "postgres" {
 }
 
 resource "aws_dynamodb_table" "toppings" {
-  name             = "toppings"
-  hash_key         = "toppings"
+  name     = "toppings"
+  hash_key = "toppings"
 
   attribute {
     name = "toppings"
@@ -101,8 +101,8 @@ resource "aws_dynamodb_table" "toppings" {
 }
 
 resource "aws_dynamodb_table" "users" {
-  name             = "users"
-  hash_key         = "users"
+  name     = "users"
+  hash_key = "users"
 
   attribute {
     name = "users"
@@ -120,6 +120,14 @@ resource "aws_instance" "pizza" {
   vpc_security_group_ids      = [aws_security_group.web_servers_sg.id]
   associate_public_ip_address = true
   iam_instance_profile        = data.tfe_outputs.core-infra.nonsensitive_values.instance_profile
+
+  user_data = <<-EOF
+              #!/bin/bash
+              cd /home/ec2-user/pizza-luvrs/
+              npm start
+              EOF
+
+  user_data_replace_on_change = true
 
   tags = {
     Name        = "${var.prefix}"

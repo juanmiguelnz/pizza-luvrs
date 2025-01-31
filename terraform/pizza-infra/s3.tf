@@ -5,7 +5,7 @@ resource "random_string" "random" {
 }
 
 resource "aws_s3_bucket" "pizza" {
-  bucket = "p-love-nz"
+  bucket        = "p-love-nz"
   force_destroy = true
 
   tags = {
