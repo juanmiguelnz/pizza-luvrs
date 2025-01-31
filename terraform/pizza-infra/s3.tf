@@ -67,3 +67,10 @@ resource "aws_s3_object" "assets" {
   source = join("/", [path.module, "../../assets", each.value])
   key    = each.value
 }
+
+resource "aws_s3_object" "stylesheet" {
+  bucket       = aws_s3_bucket.pizza.id
+  source       = "../../assets/css/stylesheet.css"
+  key          = "css/stylesheet.css"
+  content_type = "text/css"
+}
