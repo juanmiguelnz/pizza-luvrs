@@ -123,8 +123,13 @@ resource "aws_instance" "pizza" {
 
   user_data = <<-EOF
               #!/bin/bash
+              curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+              source ~/.bashrc
               cd /home/ec2-user/pizza-luvrs/
               nvm install 18
+              nvm use 18
+              node -v
+              npm -v
               nohup npm start &
               EOF
 
