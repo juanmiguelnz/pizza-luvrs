@@ -124,7 +124,7 @@ resource "aws_instance" "pizza" {
   user_data = <<-EOF
               #!/bin/bash
               cd /home/ec2-user/pizza-luvrs/
-              npm start
+              nohup npm start &
               EOF
 
   user_data_replace_on_change = true
