@@ -124,6 +124,7 @@ resource "aws_instance" "pizza" {
   user_data = <<-EOF
               #!/bin/bash
               cd /home/ec2-user/pizza-luvrs/
+              nvm install 18
               nohup npm start &
               EOF
 
