@@ -114,7 +114,7 @@ resource "aws_dynamodb_table" "users" {
 
 resource "aws_instance" "pizza" {
 
-  ami                         = "ami-0ce4704e01dabf5a1"
+  ami                         = "ami-0dd5094e7181d31ef"
   instance_type               = "t2.micro"
   subnet_id                   = data.tfe_outputs.core-infra.nonsensitive_values.public_subnets[0].id
   vpc_security_group_ids      = [aws_security_group.web_servers_sg.id]
