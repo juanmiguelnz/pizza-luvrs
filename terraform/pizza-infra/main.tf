@@ -132,7 +132,7 @@ resource "aws_instance" "pizza" {
               echo "POSTGRES_HOST=$(aws ssm get-parameter --name ${aws_ssm_parameter.pizza_db_host.name} --query "Parameter.Value" --with-decryption --output text)" | tee -a /etc/environment
               echo "POSTGRES_DB=$(aws ssm get-parameter --name ${aws_ssm_parameter.pizza_db_name.name} --query "Parameter.Value" --with-decryption --output text)" | tee -a /etc/environment
               echo "POSTGRES_USER=$(aws ssm get-parameter --name ${aws_ssm_parameter.pizza_db_user.name} --query "Parameter.Value" --with-decryption --output text)" | tee -a /etc/environment
-              echo "POSTGRES_PW=$(aws ssm get-parameter --name ${aws_ssm_parameter.pizza_db_pw.name} --query "Parameter.Value" --with-decryption --output text)" | tee -a /etc/environment
+              echo "POSTGRES_PW=$(aws ssm get-parameter --name ${aws_ssm_parameter.pizza_db_pass.name} --query "Parameter.Value" --with-decryption --output text)" | tee -a /etc/environment
               source /etc/environment
               echo "POSTGRES_HOST is set to $POSTGRES_HOST" > /tmp/pizza_db_endpoint.txt
               curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
