@@ -129,7 +129,10 @@ resource "aws_instance" "pizza" {
 
   user_data = <<-EOF
               #!/bin/bash
-              export POSTGRES_HOST=$(aws ssm get-parameter --name ${aws_ssm_parameter.pizza_db_host.name} --query "Parameter.Value" --with-decryption --output text)
+              PIZZA_DB_HOST=$(aws ssm get-parameter --name ${aws_ssm_parameter.pizza_db_host.name} --query "Parameter.Value" --with-decryption --output text)
+              echo "POSTGRES_HOST=$PIZZA_DB_HOST" | tee -a /etc/environment
+              source /etc/environment
+              echo "POSTGRES_HOST is set to $POSTGRES_HOST" > /tmp/pizza_db_endpoint.txt
               curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
               source ~/.bashrc
               cd /home/ec2-user/pizza-luvrs/
