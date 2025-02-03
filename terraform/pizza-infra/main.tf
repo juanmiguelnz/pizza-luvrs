@@ -73,9 +73,9 @@ resource "aws_ssm_parameter" "pizza_db_pass" {
   value = var.pizza_db_pass
 }
 
-resource "aws_ssm_parameter" "pizza_db_endpoint" {
+resource "aws_ssm_parameter" "pizza_db_host" {
   type  = "SecureString"
-  name  = "pizza_db_endpoint"
+  name  = "pizza_db_host"
   value = aws_db_instance.postgres.address
 }
 
