@@ -141,6 +141,7 @@ resource "aws_instance" "pizza" {
               nvm use 18
               node -v
               npm -v
+              echo $POSTGRES_HOST
               nohup npm start &
               EOF
 
