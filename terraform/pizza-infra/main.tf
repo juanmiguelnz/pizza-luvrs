@@ -129,6 +129,7 @@ resource "aws_instance" "pizza" {
 
   user_data = <<-EOF
               #!/bin/bash
+              export POSTGRES_HOST=$(aws ssm get-parameter --name ${aws_ssm_parameter.pizza_db_host.name} --query "Parameter.Value" --with-decryption --output text)
               curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
               source ~/.bashrc
               cd /home/ec2-user/pizza-luvrs/
