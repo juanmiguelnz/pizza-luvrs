@@ -120,7 +120,7 @@ resource "aws_dynamodb_table" "users" {
 
 resource "aws_instance" "pizza" {
 
-  ami                         = "ami-0dd5094e7181d31ef"
+  ami                         = "ami-071e6b1e083372364"
   instance_type               = "t2.micro"
   subnet_id                   = data.tfe_outputs.core-infra.nonsensitive_values.public_subnets[0].id
   vpc_security_group_ids      = [aws_security_group.web_servers_sg.id]
@@ -134,7 +134,6 @@ resource "aws_instance" "pizza" {
               echo "POSTGRES_USER=$(aws ssm get-parameter --name ${aws_ssm_parameter.pizza_db_user.name} --query "Parameter.Value" --with-decryption --output text)" | tee -a /etc/environment
               echo "POSTGRES_PW=$(aws ssm get-parameter --name ${aws_ssm_parameter.pizza_db_pass.name} --query "Parameter.Value" --with-decryption --output text)" | tee -a /etc/environment
               source /etc/environment
-              echo "POSTGRES_HOST is set to $POSTGRES_HOST" > /tmp/pizza_db_endpoint.txt
               curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
               source ~/.bashrc
               cd /home/ec2-user/pizza-luvrs/
