@@ -73,6 +73,12 @@ resource "aws_ssm_parameter" "pizza_db_pass" {
   value = var.pizza_db_pass
 }
 
+resource "aws_ssm_parameter" "pizza_db_endpoint" {
+  type  = "SecureString"
+  name  = "pizza_db_endpoint"
+  value = aws_db_instance.postgres.address
+}
+
 resource "aws_db_instance" "postgres" {
   identifier             = "${var.prefix}-postgres"
   instance_class         = "db.t3.micro"
