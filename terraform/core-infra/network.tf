@@ -1,5 +1,7 @@
 resource "aws_vpc" "core_vpc" {
-  cidr_block = "10.10.0.0/16"
+  cidr_block           = var.vpc_cidr_block
+  enable_dns_hostnames = true
+  enable_dns_support   = true
   tags = {
     Name = "pizza"
   }
@@ -13,30 +15,24 @@ resource "aws_internet_gateway" "igw" {
   }
 }
 
+resource "aws_subnet" "public_subnets" {
+  count = var.public_subnet_count
+
+  vpc_id            = aws_vpc.core_vpc.id
+  cidr_block        = cidrsubnet(var.vpc_cidr_block, 8, count.index)
+  availability_zone = data.aws_availability_zones.available.names[count.index]
+
+  tags = {
+    Name = "public_subnet${count.index}"
+  }
+}
+
 resource "aws_subnet" "mgmtsubnet" {
   vpc_id     = aws_vpc.core_vpc.id
-  cidr_block = "10.10.0.0/24"
+  cidr_block = "10.10.99.0/24"
 
   tags = {
-    Name = "mgmt-subnet"
-  }
-}
-
-resource "aws_subnet" "subneta" {
-  vpc_id     = aws_vpc.core_vpc.id
-  cidr_block = "10.10.1.0/24"
-
-  tags = {
-    Name = "subneta"
-  }
-}
-
-resource "aws_subnet" "subnetb" {
-  vpc_id     = aws_vpc.core_vpc.id
-  cidr_block = "10.10.2.0/24"
-
-  tags = {
-    Name = "subnetb"
+    Name = "mgmt_subnet"
   }
 }
 
@@ -58,12 +54,9 @@ resource "aws_route_table_association" "mgmtsubnet" {
   route_table_id = aws_route_table.internet.id
 }
 
-resource "aws_route_table_association" "subneta" {
-  subnet_id      = aws_subnet.subneta.id
-  route_table_id = aws_route_table.internet.id
-}
+resource "aws_route_table_association" "public_subnets" {
+  count = var.public_subnet_count
 
-resource "aws_route_table_association" "subnetb" {
-  subnet_id      = aws_subnet.subnetb.id
+  subnet_id      = aws_subnet.public_subnets[count.index].id
   route_table_id = aws_route_table.internet.id
 }

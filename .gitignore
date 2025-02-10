@@ -4,3 +4,4 @@ log
 .DS_Store
 .terraform*
 *tfstate*
+package-lock.json
