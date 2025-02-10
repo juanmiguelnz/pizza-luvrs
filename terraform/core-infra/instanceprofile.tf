@@ -7,7 +7,10 @@ resource "aws_iam_role" "pizza" {
         Action : "sts:AssumeRole",
         Effect : "Allow",
         Principal : {
-          Service : "ec2.amazonaws.com"
+          Service : [
+            "ec2.amazonaws.com",
+            "codedeploy.amazonaws.com"
+          ]
         }
       }
     ]
