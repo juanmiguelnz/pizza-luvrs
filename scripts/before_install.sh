@@ -14,3 +14,8 @@ nvm install 18
 nvm use 18
 node -v
 npm -v
+sudo mkdir -p /home/ec2-user/pizza-luvrs
+sudo chown -R ec2-user:ec2-user /home/ec2-user/pizza-luvrs  
+cd /home/ec2-user/pizza-luvrs
+git clone https://github.com/juanmiguelnz/pizza-luvrs.git
+
