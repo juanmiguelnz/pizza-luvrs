@@ -4,9 +4,11 @@ on:
   push:
     paths:
       - 'terraform/pizza-infra/**'
+      - 'scripts/*'
   pull_request:
     paths:
       - 'terraform/pizza-infra/**'
+      - 'scripts/*'
 
 env:
   TF_LOG: INFO
