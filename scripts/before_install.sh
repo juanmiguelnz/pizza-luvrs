@@ -14,6 +14,7 @@ nvm install 18
 nvm use 18
 node -v
 npm -v
+sudo chown -R ec2-user:ec2-user /home/ec2-user/
 cd /home/ec2-user/
 pwd
 whoami
