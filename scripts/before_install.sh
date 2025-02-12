@@ -15,5 +15,6 @@ nvm use 18
 node -v
 npm -v
 mkdir pizza-luvrs
+ls
 cd pizza-luvrs
 git clone https://github.com/juanmiguelnz/pizza-luvrs.git
