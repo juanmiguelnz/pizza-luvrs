@@ -5,10 +5,12 @@ on:
     paths:
       - 'terraform/pizza-infra/**'
       - 'scripts/*'
+      - 'appspec.yml'
   pull_request:
     paths:
       - 'terraform/pizza-infra/**'
       - 'scripts/*'
+      - 'appspec.yml'
 
 env:
   TF_LOG: INFO
