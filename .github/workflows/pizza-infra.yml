@@ -49,7 +49,7 @@ jobs:
       if: (success() || failure())
       run: terraform -chdir=terraform/pizza-infra validate
   
-  deploy-code:
+  deploy:
     name: 'Deploy Code'
     needs: Terraform
     runs-on: ubuntu-latest
