@@ -14,5 +14,7 @@ nvm install 18
 nvm use 18
 node -v
 npm -v
+sudo mkdir pizza-luvrs
+cd pizza-luvrs
 sudo git clone https://github.com/juanmiguelnz/pizza-luvrs.git
 ls
