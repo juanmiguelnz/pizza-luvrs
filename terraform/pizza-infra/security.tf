@@ -151,3 +151,31 @@ resource "aws_vpc_security_group_ingress_rule" "allow_5432_from_local" {
     Name = "${var.prefix}-allow-5432-from-local"
   }
 }
+
+resource "aws_iam_role" "pizza_code_deploy" {
+  name = "pizza-code-deploy"
+  assume_role_policy = jsonencode({
+    Version : "2012-10-17",
+    Statement : [
+      {
+        Action : "sts:AssumeRole",
+        Effect : "Allow",
+        Principal : {
+          Service : [
+            "codedeploy.amazonaws.com"
+          ]
+        }
+      }
+    ]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "code_deploy" {
+  role       = aws_iam_role.pizza_code_deploy.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSCodeDeployRole"
+}
+
+resource "aws_iam_role_policy_attachment" "code_deploy_ecs" {
+  role       = aws_iam_role.pizza_code_deploy.name
+  policy_arn = "arn:aws:iam::aws:policy/AWSCodeDeployRoleForECS"
+}

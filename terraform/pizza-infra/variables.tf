@@ -5,7 +5,7 @@ variable "prefix" {
 
 variable "local_ip" {
   type    = string
-  default = "222.153.59.104"
+  default = "222.153.58.215"
 }
 
 variable "pizza_db_name" {

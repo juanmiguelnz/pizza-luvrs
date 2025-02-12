@@ -8,8 +8,7 @@ resource "aws_iam_role" "pizza" {
         Effect : "Allow",
         Principal : {
           Service : [
-            "ec2.amazonaws.com",
-            "codedeploy.amazonaws.com"
+            "ec2.amazonaws.com"
           ]
         }
       }
